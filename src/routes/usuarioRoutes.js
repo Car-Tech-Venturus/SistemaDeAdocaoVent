@@ -10,6 +10,6 @@ router.get("/", usuarioController.listar);
 router.post("/", usuarioController.cadastrar);
 
 // Atualizar usuário
-router.patch("/:id", usuarioController.atualizar);
+router.patch("/usuario/:id", usuarioController.atualizar);
 
 export default router;
