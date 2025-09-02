@@ -1,3 +1,4 @@
+import express from "express";
 import Usuario from "../models/Usuario.js";
 import encrypt from "encryptjs";
 
