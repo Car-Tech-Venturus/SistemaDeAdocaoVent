@@ -4,7 +4,7 @@ import usuarioController from "../controllers/usuarioController.js";
 const router = express.Router();
 
 // Lista os usuários
-router.get("/", usuarioController.listar);
+router.get("/:id", usuarioController.buscarPorId);
 
 // Cadastra usuário
 router.post("/", usuarioController.cadastrar);
