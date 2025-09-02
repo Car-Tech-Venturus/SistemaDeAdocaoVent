@@ -1,16 +1,15 @@
 import express from "express";
+import usuarioController from "../controllers/usuarioController.js";
 
-const express = express();
 const router = express.Router();
-const usuarioController = require ("../controllers/usuarioControllers.js");
 
-//Lista os usuários
+// Lista os usuários
 router.get("/", usuarioController.listar);
 
-//cadastra usuario
+// Cadastra usuário
 router.post("/", usuarioController.cadastrar);
 
-//atualizar
-router.patch("/:id",usuarioController.atualizar)
+// Atualizar usuário
+router.patch("/:id", usuarioController.atualizar);
 
-module.exports = router;
+export default router;
