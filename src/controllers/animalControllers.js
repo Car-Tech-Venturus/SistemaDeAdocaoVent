@@ -1,5 +1,5 @@
 import express from "express";
-import Animal from "../models/Animal.js";
+import Animal from "../../models/Animal.js";
 
 const animalController = {
   // Cadastrar animal
