@@ -1,10 +1,10 @@
 import express from "express";
-import animalRoutes from "./animalRoutes";
-import adminRoutes from "./adminRoutes";
-import doacaoRoutes from "./doacaoRoutes";
-import loginRoutes from "./loginRoutes";
-import pedidoAdocaoRoutes from "./pedidoAdocaoRoutes";
-import usuarioRoutes from "./usuarioRoutes";
+import animalRoutes from "./animalRoutes.j";
+import adminRoutes from "./adminRoutes.js";
+import doacaoRoutes from "./doacaoRoutes.js";
+import loginRoutes from "./loginRoutes.js";
+import pedidoAdocaoRoutes from "./pedidoAdocaoRoutes.js";
+import usuarioRoutes from "./usuarioRoutes.js";
 
 
 const router = express.Router();
