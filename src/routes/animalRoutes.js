@@ -16,7 +16,7 @@ router.get("/admin/animais", animalController.listarAdmin);
 router.post("/", animalController.cadastrar);
 
 // Atualizar animal
-router.patch("/admin/animal/:id", animalController.atualizar);
+router.patch("/admin/animais/:id", animalController.atualizar);
 
 // Deletar animal
 router.delete("/admin/animais/:id", animalController.deletar);
