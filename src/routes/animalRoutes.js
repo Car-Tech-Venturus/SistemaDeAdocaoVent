@@ -9,10 +9,16 @@ router.get("/", animalController.listar);
 // Lista animal por ID
 router.get("/:id", animalController.buscarPorId);
 
+// Lista todos os animais (rota admin)
+router.get("/admin/animais", animalController.listarAdmin);       
+
 // Cadastra animal
 router.post("/", animalController.cadastrar);
 
 // Atualizar animal
-router.patch("/animal/:id", animalController.atualizar);
+router.patch("/admin/animal/:id", animalController.atualizar);
+
+// Deletar animal
+router.delete("/admin/animais/:id", animalController.deletar);
 
 export default router;
