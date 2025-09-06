@@ -1,5 +1,5 @@
 import express from "express";
-import animalRoutes from "./animalRoutes.j";
+import animalRoutes from "./animalRoutes.js";
 import adminRoutes from "./adminRoutes.js";
 import doacaoRoutes from "./doacaoRoutes.js";
 import loginRoutes from "./loginRoutes.js";
