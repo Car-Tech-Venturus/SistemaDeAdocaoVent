@@ -1,5 +1,5 @@
 import express from "express";
-import Usuario from "../models/Usuario.js";
+import Usuario from "../../models/Usuario.js";
 import encrypt from "encryptjs";
 
 const SECRET_KEY = process.env.SECRET_KEY; // pesquisei muito pra fazer isso, precisa perguntar pro professores se tá certo, não pode esquecer por nada
