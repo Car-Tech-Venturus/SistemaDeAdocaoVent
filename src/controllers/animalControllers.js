@@ -5,19 +5,26 @@ const animalController = {
   // Cadastrar animal
   async cadastrar(req, res) {
     try {
-      const { nome, raca, idade, porte, descricao } = req.body;
+      const { nome, especie, raca, idade, porte, castrado, vacinado, descricao, foto } = req.body;
 
-      // Validar campos obrigatórios
-      if (!nome || !especie || !idade) {
-        return res.status(400).json({ erro: "Nome, raça e idade são obrigatórios." });
+      // Validar campos obrigatórios (foto é opcional)
+      if (!nome || !especie || !raca || !idade || !porte || castrado === undefined || vacinado === undefined || !descricao) {
+        return res.status(400).json({
+          erro: "Todos os campos obrigatórios devem ser preenchidos corretamente."
+        });
       }
 
       const animal = await Animal.create({
         nome,
+        especie,
         raca,
         idade,
         porte,
-        descricao
+        castrado,
+        vacinado,
+        adotado: false, // por padrão
+        descricao,
+        foto: foto || null // aceita nulo
       });
 
       res.status(201).json(animal);
@@ -27,38 +34,86 @@ const animalController = {
     }
   },
 
-  // Listar todos os animais
+  // Listar todos os animais (público) com filtros opcionais
   async listar(req, res) {
     try {
-      const animais = await Animal.findAll();
-      res.json(animais);
+      const { especie, porte, castrado } = req.query;
+
+      const filtros = {};
+      if (especie) filtros.especie = especie;
+      if (porte) filtros.porte = porte;
+      if (castrado !== undefined) filtros.castrado = castrado === "true";
+
+      const animais = await Animal.findAll({
+        where: filtros,
+        order: [["createdAt", "ASC"]]
+      });
+
+      // Converter Buffer da foto para base64, se existir
+      const response = animais.map(a => ({
+        ...a.toJSON(),
+        foto: a.foto ? a.foto.toString("base64") : null
+      }));
+
+      res.status(200).json({
+        data: response,
+        total: response.length
+      });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao listar animais" });
+      res.status(500).json({ erro: "Erro ao buscar animais" });
     }
   },
 
-  // Buscar animal por ID
+  // Buscar animal por ID (público)
   async buscarPorId(req, res) {
     try {
       const animal = await Animal.findByPk(req.params.id);
       if (!animal) {
         return res.status(404).json({ erro: "Animal não encontrado" });
       }
-      res.json(animal);
+
+      const response = {
+        ...animal.toJSON(),
+        foto: animal.foto ? animal.foto.toString("base64") : null
+      };
+
+      res.status(200).json(response);
     } catch (error) {
       console.error(error);
       res.status(500).json({ erro: "Erro ao buscar dados do animal" });
     }
   },
 
-  // Atualizar animal parcialmente (PATCH)
+  // Listar todos os animais (Admin)
+  async listarAdmin(req, res) {
+    try {
+      const animais = await Animal.findAll({
+        order: [["createdAt", "ASC"]]
+      });
+
+      const response = animais.map(a => ({
+        ...a.toJSON(),
+        foto: a.foto ? a.foto.toString("base64") : null
+      }));
+
+      res.status(200).json({
+        data: response,
+        total: response.length
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ erro: "Erro ao buscar animais" });
+    }
+  },
+
+  // Atualizar animal parcialmente (PATCH - Admin)
   async atualizar(req, res) {
     try {
-      const { nome, raca, idade, porte, descricao } = req.body;
+      const { nome, especie, raca, idade, porte, castrado, vacinado, adotado, descricao, foto } = req.body;
 
-      if (!nome && !raca && !idade && !porte && !descricao) {
-        return res.status(400).json({ erro: "Pelo menos um campo deve ser enviado para atualização" });
+      if (!nome && !especie && !raca && !idade && !porte && castrado === undefined && vacinado === undefined && adotado === undefined && !descricao && !foto) {
+        return res.status(400).json({ erro: "Nenhum campo foi fornecido para atualização" });
       }
 
       const animal = await Animal.findByPk(req.params.id);
@@ -67,17 +122,43 @@ const animalController = {
       }
 
       if (nome) animal.nome = nome;
+      if (especie) animal.especie = especie;
       if (raca) animal.raca = raca;
       if (idade) animal.idade = idade;
       if (porte) animal.porte = porte;
+      if (castrado !== undefined) animal.castrado = castrado;
+      if (vacinado !== undefined) animal.vacinado = vacinado;
+      if (adotado !== undefined) animal.adotado = adotado;
       if (descricao) animal.descricao = descricao;
+      if (foto !== undefined) animal.foto = foto;
 
       await animal.save();
 
-      res.json(animal);
+      const response = {
+        ...animal.toJSON(),
+        foto: animal.foto ? animal.foto.toString("base64") : null
+      };
+
+      res.status(200).json(response);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao atualizar os dados do animal" });
+      res.status(500).json({ erro: "Erro ao atualizar o animal" });
+    }
+  },
+
+  // Deletar animal (Admin)
+  async deletar(req, res) {
+    try {
+      const animal = await Animal.findByPk(req.params.id);
+      if (!animal) {
+        return res.status(404).json({ erro: "Animal não encontrado" });
+      }
+
+      await animal.destroy();
+      res.status(204).send();
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ erro: "Erro ao remover animal" });
     }
   }
 };
