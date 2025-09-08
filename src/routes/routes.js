@@ -5,6 +5,7 @@ import doacaoRoutes from "./doacaoRoutes.js";
 import loginRoutes from "./loginRoutes.js";
 import pedidoAdocaoRoutes from "./pedidoAdocaoRoutes.js";
 import usuarioRoutes from "./usuarioRoutes.js";
+import adocoesRoutes from "./adocoesRoutes.js";
 
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.use("/doacoes", doacaoRoutes);
 router.use("/login", loginRoutes);
 router.use("/pedidos-adocao", pedidoAdocaoRoutes);
 router.use("/usuarios", usuarioRoutes);
+router.use("/adocoes", adocoesRoutes);
 
 export default router;
