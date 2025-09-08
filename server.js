@@ -7,6 +7,10 @@ const port = 3000;
 app.use(express.json());
 app.use(routes);
 
+try{
 app.listen(port, () => {
     console.log(`servidor rodando em http://localhost:${port}`);
 });
+} catch (error) {
+    console.error("Erro ao iniciar o servidor:", error);
+}
