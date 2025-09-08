@@ -5,10 +5,10 @@ const animalController = {
   // Cadastrar animal
   async cadastrar(req, res) {
     try {
-      const { nome, especie, raca, idade, porte, castrado, vacinado, descricao, foto } = req.body;
+      const { nome, especie, porte, castrado, vacinado, descricao, foto } = req.body;
 
       // Validar campos obrigatórios (foto é opcional)
-      if (!nome || !especie || !raca || !idade || !porte || castrado === undefined || vacinado === undefined || !descricao) {
+      if (!nome || !especie || !porte || castrado === undefined || vacinado === undefined || !descricao) {
         return res.status(400).json({
           erro: "Todos os campos obrigatórios devem ser preenchidos corretamente."
         });
@@ -17,8 +17,6 @@ const animalController = {
       const animal = await Animal.create({
         nome,
         especie,
-        raca,
-        idade,
         porte,
         castrado,
         vacinado,
@@ -110,9 +108,9 @@ const animalController = {
   // Atualizar animal parcialmente (PATCH - Admin)
   async atualizar(req, res) {
     try {
-      const { nome, especie, raca, idade, porte, castrado, vacinado, adotado, descricao, foto } = req.body;
+      const { nome, especie, porte, castrado, vacinado, adotado, descricao, foto } = req.body;
 
-      if (!nome && !especie && !raca && !idade && !porte && castrado === undefined && vacinado === undefined && adotado === undefined && !descricao && !foto) {
+      if (!nome && !especie && !porte && castrado === undefined && vacinado === undefined && adotado === undefined && !descricao && !foto) {
         return res.status(400).json({ erro: "Nenhum campo foi fornecido para atualização" });
       }
 
@@ -123,8 +121,6 @@ const animalController = {
 
       if (nome) animal.nome = nome;
       if (especie) animal.especie = especie;
-      if (raca) animal.raca = raca;
-      if (idade) animal.idade = idade;
       if (porte) animal.porte = porte;
       if (castrado !== undefined) animal.castrado = castrado;
       if (vacinado !== undefined) animal.vacinado = vacinado;
