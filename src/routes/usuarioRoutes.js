@@ -4,12 +4,12 @@ import usuarioController from "../controllers/usuarioControllers.js";
 const router = express.Router();
 
 // Lista os usuários
-router.get("/:id", usuarioController.buscarPorId);
+router.get("/tutores/:id", usuarioController.buscarPorId);
 
 // Cadastra usuário
-router.post("/", usuarioController.cadastrar);
+router.post("/tutores", usuarioController.cadastrar);
 
 // Atualizar usuário
-router.patch("/usuario/:id", usuarioController.atualizar);
+router.patch("/tutores/:id", usuarioController.atualizar);
 
 export default router;
