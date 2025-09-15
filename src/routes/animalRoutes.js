@@ -29,14 +29,13 @@ router.delete(
 
 
 // Buscar animal por ID
-router.get("/:id", animalController.buscarPorId);
+router.get("/animais/:id", animalController.buscarPorId);
 
 // Listar todos os animais (com filtros opcionais)
-router.get("/", animalController.listar);
+router.get("/animais", animalController.listar);
 
 // Cadastrar animal (pode ser admin também, então precisa de proteção)
-router.post(
-  "/",
+router.post("/animais",
   autenticarToken,
   apenasAdmin,
   validarCamposObrigatorios([
