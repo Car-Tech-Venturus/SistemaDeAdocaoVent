@@ -1,4 +1,4 @@
-import AdminModel from '../../models/Admin.js';
+import AdminModel from '../../models/Usuario.js';
 
 const AdminController = {
     // Criar administrador
