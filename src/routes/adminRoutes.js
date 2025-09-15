@@ -1,18 +1,17 @@
 import express from "express";
-import { autenticarToken, apenasAdmin } from "../middlewares/auth.js";
-import { validarCamposObrigatorios } from "../middlewares/validarCampos.js";
-import AdminController from "../controllers/AdminController.js";
-import AnimalController from "../controllers/AnimalController.js"; 
-
+import { autenticarToken, apenasAdmin } from "../middlewares/authMiddlewares.js";
+import AnimalController from "../controllers/animalControllers.js"; 
 
 const router = express.Router();
 
-//Visualizar todos os animais (com filtros avançados)
+
+
+// Visualizar todos os animais 
 router.get(
   "/admin/animais",
   autenticarToken,
   apenasAdmin,
-  AnimalController.listarTodos
+  AnimalController.listarAdmin
 );
 
 // Atualizar animal
@@ -20,16 +19,15 @@ router.patch(
   "/admin/animais/:id",
   autenticarToken,
   apenasAdmin,
-  AnimalController.atualizar
+  AnimalController.atualizar 
 );
 
-//Remover animal da base
+// Remover animal da base
 router.delete(
   "/admin/animais/:id",
   autenticarToken,
   apenasAdmin,
-  AnimalController.remover
+  AnimalController.deletar    
 );
-
 
 export default router;
