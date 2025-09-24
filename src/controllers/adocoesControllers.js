@@ -1,4 +1,4 @@
-import AdocaoModel from '../../models/Adocao.js';
+
 
 const AdocoesController = {
     // Finalizar adoção

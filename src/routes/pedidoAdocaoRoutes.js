@@ -1,5 +1,7 @@
 import express from "express"
-import { apenasAdmin } from "../middlewares/authMiddlewares";
+import pedidoAdocaoController from "../controllers/pedidoAdocaoControllers.js"
+import { apenasAdmin, autenticarToken } from "../middlewares/authMiddlewares.js";
+
 
 const router = express.Router();
 

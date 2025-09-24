@@ -1,5 +1,7 @@
 import express from "express";
-import { apenasAdmin } from "../middlewares/authMiddlewares";
+import questionarioController from "../controllers/questionarioController.js";
+import { validarCamposObrigatorios } from "../middlewares/validMiddlewares.js";
+import { apenasAdmin, autenticarToken } from "../middlewares/authMiddlewares";
 
 const router = express.Router();
 

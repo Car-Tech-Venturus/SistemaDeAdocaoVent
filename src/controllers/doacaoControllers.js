@@ -1,4 +1,4 @@
-import DoacaoModel from '../../models/Doacao.jsgit ';
+import DoacaoModel from '../../models/Doacao.js';
 
 const DoacaoController = {
     // Registrar doação
