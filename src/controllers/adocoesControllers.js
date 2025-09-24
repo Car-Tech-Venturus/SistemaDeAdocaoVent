@@ -1,3 +1,5 @@
+import express from 'express';
+import AdocaoModel from '../../models/PedidoAdocao.js';
 
 
 const AdocoesController = {

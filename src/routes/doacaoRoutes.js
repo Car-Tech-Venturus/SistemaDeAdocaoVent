@@ -9,5 +9,6 @@ const router = express.Router();
 router.post("/doacoes",
     autenticarToken,
     validarCamposObrigatorios(["nome", "email", "valor", "linkPix"]),
+    doacaoController.create
 )
 export default router;

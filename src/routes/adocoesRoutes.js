@@ -11,6 +11,7 @@ router.post("/adocoes",
     autenticarToken,
     apenasAdmin,
     validarCamposObrigatorios(["pedidoAdocaoId", "dataAdocao"]),
+    adocoesController.create
 )
 
 export default router;

@@ -51,7 +51,8 @@ validarCamposObrigatorios([
   "topa_entrar_grupo_adotantes",
   "concorda_com_taxa_adocao",
   "data_disponivel_para_buscar_animal"
-])
+]),
+    questionarioController.create
 );
 
 export default router;

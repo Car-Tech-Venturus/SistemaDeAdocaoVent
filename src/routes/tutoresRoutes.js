@@ -1,5 +1,6 @@
 import express from "express";
 import usuarioController from "../controllers/tutoresControllers.js";
+import { validarCamposObrigatorios } from "../middlewares/validMiddlewares.js";
 
 const router = express.Router();
 
@@ -7,7 +8,9 @@ const router = express.Router();
 router.get("/tutores/:id", usuarioController.buscarPorId);
 
 // Cadastra usuário
-router.post("/tutores", usuarioController.cadastrar);
+router.post("/tutores", usuarioController.cadastrar,
+    validarCamposObrigatorios(["nome", "email", "senha"])
+);
 
 // Atualizar usuário
 router.patch("/tutores/:id", usuarioController.atualizar);
