@@ -50,7 +50,6 @@ validarCamposObrigatorios([
   "concorda_com_taxa_adocao",
   "data_disponivel_para_buscar_animal"
 ])
-
 );
 
 export default router;
