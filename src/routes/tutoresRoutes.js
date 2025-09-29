@@ -8,8 +8,9 @@ const router = express.Router();
 router.get("/tutores/:id", usuarioController.buscarPorId);
 
 // Cadastra usuário
-router.post("/tutores", usuarioController.cadastrar,
-    validarCamposObrigatorios(["nome", "email", "senha"])
+router.post("/tutores", 
+    validarCamposObrigatorios(["nome", "email", "senha"]),
+    usuarioController.cadastrar
 );
 
 // Atualizar usuário
