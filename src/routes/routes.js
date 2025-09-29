@@ -11,12 +11,12 @@ import adocoesRoutes from "./adocoesRoutes.js";
 const router = express.Router();
 
 // Registrando cada rota com um caminho base
-router.use("/animals", animalRoutes);
-router.use("/admin", adminRoutes);
-router.use("/doacoes", doacaoRoutes);
-router.use("/login", loginRoutes);
-router.use("/pedidos-adocao", pedidoAdocaoRoutes);
-router.use("/tutores", tutoresRoutes);
-router.use("/adocoes", adocoesRoutes);
+router.use("/", animalRoutes);
+router.use("/", adminRoutes);
+router.use("/", doacaoRoutes);
+router.use("/", loginRoutes);
+router.use("/", pedidoAdocaoRoutes);
+router.use("/", tutoresRoutes);
+router.use("/", adocoesRoutes);
 
 export default router;
