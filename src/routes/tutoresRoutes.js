@@ -9,7 +9,7 @@ router.get("/tutores/:id", usuarioController.buscarPorId);
 
 // Cadastra usuário
 router.post("/tutores", 
-    validarCamposObrigatorios(["nome", "email", "senha"]),
+    validarCamposObrigatorios(["email", "senha"]),
     usuarioController.cadastrar
 );
 
