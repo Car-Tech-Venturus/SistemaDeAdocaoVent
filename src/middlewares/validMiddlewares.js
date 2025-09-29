@@ -5,6 +5,7 @@ export function validarCamposObrigatorios(campos) {
     const faltando = [];
 
     campos.forEach(campo => {
+
       if (
         req.body[campo] === undefined ||
         req.body[campo] === null ||

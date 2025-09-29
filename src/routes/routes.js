@@ -16,7 +16,7 @@ router.use("/", adminRoutes);
 router.use("/", doacaoRoutes);
 router.use("/", loginRoutes);
 router.use("/", pedidoAdocaoRoutes);
-router.use("/", tutoresRoutes);
+router.use("/tutores", tutoresRoutes);
 router.use("/", adocoesRoutes);
 
 export default router;

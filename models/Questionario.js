@@ -51,6 +51,10 @@ export default (sequelize) => {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
+        tutorId: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
         todos_de_acordo_com_adocao: {
             type: DataTypes.BOOLEAN,
             allowNull: false
