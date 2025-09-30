@@ -7,7 +7,7 @@ const router = express.Router();
 
 //POST: /adocoes
 
-router.post("/adocoes",
+router.post("/",
     autenticarToken,
     apenasAdmin,
     validarCamposObrigatorios(["pedidoAdocaoId", "dataAdocao"]),

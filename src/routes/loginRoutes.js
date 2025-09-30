@@ -5,7 +5,7 @@ import { validarCamposObrigatorios } from "../middlewares/validMiddlewares.js";
 
 const router = express.Router();
 
-router.post("/login", 
+router.post("/", 
     validarCamposObrigatorios(["email", "senha"]),
     usuarioController.cadastrar
 ); //não sei se ta certo, mas tem teoria é só isso, pede só o método post
