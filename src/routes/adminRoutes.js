@@ -8,7 +8,7 @@ const router = express.Router();
 
 // Visualizar todos os animais 
 router.get(
-  "/admin/animais",
+  "/animais",
   autenticarToken,
   apenasAdmin,
   AnimalController.listarAdmin
@@ -16,7 +16,7 @@ router.get(
 
 // Atualizar animal
 router.patch(
-  "/admin/animais/:id",
+  "/animais/:id",
   autenticarToken,
   apenasAdmin,
   AnimalController.atualizar 
@@ -24,7 +24,7 @@ router.patch(
 
 // Remover animal da base
 router.delete(
-  "/admin/animais/:id",
+  "/animais/:id",
   autenticarToken,
   apenasAdmin,
   AnimalController.deletar    

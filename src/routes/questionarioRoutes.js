@@ -6,7 +6,7 @@ import { apenasAdmin, autenticarToken } from "../middlewares/authMiddlewares";
 const router = express.Router();
 
 //POST: /questionario
-router.post("/questionario",
+router.post("/",
     autenticarToken,
     apenasAdmin,
 validarCamposObrigatorios([

@@ -6,7 +6,7 @@ import doacaoController from "../controllers/doacaoControllers.js";
 const router = express.Router();
 
 //POST: /doacoes
-router.post("/doacoes",
+router.post("/",
     autenticarToken,
     validarCamposObrigatorios(["nome", "email", "valor", "linkPix"]),
     doacaoController.create
