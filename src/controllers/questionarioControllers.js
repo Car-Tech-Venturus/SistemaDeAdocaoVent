@@ -1,4 +1,4 @@
-import QuestionarioModel from '../models/Questionario.js';
+import QuestionarioModel from '../../models/Questionario.js';
 
 const QuestionarioController = {
     // Criar questionário
