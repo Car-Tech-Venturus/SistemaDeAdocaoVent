@@ -5,10 +5,10 @@ const animalController = {
   // Cadastrar animal
   async cadastrar(req, res) {
     try {
-      const { nome, especie, porte, castrado, vacinado, descricao, foto } = req.body;
+      const { nome, especie, porte, castrado, vacinado, descricao, foto, adotado } = req.body;
 
       // Validar campos obrigatórios (foto é opcional)
-      if (!nome || !especie || !porte || castrado === undefined || vacinado === undefined || !descricao) {
+      if (!nome || !especie || !porte || castrado === undefined || vacinado === undefined || !descricao || !adotado)  {
         return res.status(400).json({
           erro: "Todos os campos obrigatórios devem ser preenchidos corretamente."
         });

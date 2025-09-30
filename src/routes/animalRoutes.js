@@ -44,7 +44,8 @@ router.post("/animais",
     "porte",
     "castrado",
     "vacinado",
-    "descricao"
+    "descricao",
+    "adotado"
   ]),
   animalController.cadastrar
 );
