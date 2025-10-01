@@ -7,8 +7,8 @@ const router = express.Router();
 
 //POST: /doacoes
 router.post("/",
-    autenticarToken,
-    validarCamposObrigatorios(["nome", "email", "valor", "linkPix"]),
+    //autenticarToken,
+    validarCamposObrigatorios(["nome","valor", "linkPix", "mensagem"]),
     doacaoController.create
 )
 export default router;

@@ -1,4 +1,4 @@
-import DoacaoModel from '../../models/Doacao.js';
+import {Doacao} from '../../models/Modelos.js';
 
 const DoacaoController = {
     // Registrar doação
@@ -12,7 +12,7 @@ const DoacaoController = {
             }
 
             // Cria a doação
-            const doacao = await DoacaoModel.create({ nome, email, valor, linkPix, mensagem });
+            const doacao = await Doacao.create({ nome, email, valor, linkPix, mensagem });
 
             return res.status(201).json({
                 message: 'Doação registrada com sucesso!',
