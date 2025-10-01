@@ -7,7 +7,7 @@ const router = express.Router();
 
 //POST: /questionario
 router.post("/",
-    //autenticarToken,
+    autenticarToken,
     //apenasAdmin,
 validarCamposObrigatorios([
   "tutorId",
