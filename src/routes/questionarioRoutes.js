@@ -7,9 +7,10 @@ const router = express.Router();
 
 //POST: /questionario
 router.post("/",
-    autenticarToken,
-    apenasAdmin,
+    //autenticarToken,
+    //apenasAdmin,
 validarCamposObrigatorios([
+  "tutorId",
   "quantos_animais_possui",
   "motivos_para_adotar",
   "quem_vai_sustentar_o_animal",
