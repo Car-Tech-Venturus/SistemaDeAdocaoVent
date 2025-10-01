@@ -1,10 +1,10 @@
-import PedidoAdocaoModel from '../../models/PedidoAdocao.js';
+import {PedidoAdocao} from '../../models/Modelos.js';
 
 const PedidoAdocaoController = {
     // Criar pedido de adoção
     async create(req, res) {
         try {
-            const { tutorId, animalId, posicao_fila } = req.body;
+            const { tutorId, animalId, status} = req.body;
 
             // Verificação de campos obrigatórios
             if (!tutorId || !animalId) {
@@ -12,10 +12,10 @@ const PedidoAdocaoController = {
             }
 
             // Cria o pedido com status padrão 'em_analise'
-            const pedido = await PedidoAdocaoModel.create({
+            const pedido = await PedidoAdocao.create({
                 tutorId,
                 animalId,
-                posicao_fila
+                status
             });
 
             return res.status(201).json({
