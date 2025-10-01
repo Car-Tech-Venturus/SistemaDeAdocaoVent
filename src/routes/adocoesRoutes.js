@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/adocoes",
     autenticarToken,
-    apenasAdmin,
+    //penasAdmin,
     validarCamposObrigatorios(["pedidoAdocaoId", "dataAdocao"]),
     adocoesController.create
 )
