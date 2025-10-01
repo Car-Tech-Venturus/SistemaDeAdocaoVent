@@ -1,4 +1,4 @@
-import QuestionarioModel from '../../models/Questionario.js';
+import {Questionario} from '../../models/Modelos.js';
 
 const QuestionarioController = {
     // Criar questionário
@@ -12,7 +12,7 @@ const QuestionarioController = {
             }
 
             // Criação do questionário
-            const questionario = await QuestionarioModel.create(dados);
+            const questionario = await Questionario.create(dados);
 
             return res.status(201).json({
                 message: 'Questionário cadastrado com sucesso!',
