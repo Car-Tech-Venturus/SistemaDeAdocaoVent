@@ -16,9 +16,9 @@ router.use("/", animalRoutes);
 router.use("/admin", adminRoutes);
 router.use("/doacoes", doacaoRoutes);
 router.use("/login", loginRoutes);
-router.use("/adocoes", pedidoAdocaoRoutes);
+router.use("/", pedidoAdocaoRoutes);
 router.use("/tutores", tutoresRoutes);
-router.use("/adocoes", adocoesRoutes);
+router.use("/", adocoesRoutes);
 router.use("/questionario", questionarioRoutes);
 
 export default router;
