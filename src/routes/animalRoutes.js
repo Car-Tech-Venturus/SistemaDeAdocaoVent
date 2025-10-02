@@ -9,33 +9,33 @@ const router = express.Router();
 //Também pq se eu não me engano, o express lê as rotas de cima pra baixo
 
 // Listar todos os animais (Admin)
-router.get("/admin/animais", autenticarToken, apenasAdmin, animalController.listarAdmin);
+// router.get("/admin/animais", autenticarToken, apenasAdmin, animalController.listarAdmin);
 
-// Atualizar animal (Admin)
-router.patch(
-  "/admin/animais/:id",
-  autenticarToken,
-  apenasAdmin,
-  animalController.atualizar
-);
+// // Atualizar animal (Admin)
+// router.patch(
+//   "/admin/animais/:id",
+//   autenticarToken,
+//   apenasAdmin,
+//   animalController.atualizar
+// );
 
-// Deletar animal (Admin)
-router.delete(
-  "/admin/animais/:id",
-  autenticarToken,
-  apenasAdmin,
-  animalController.deletar
-);
+// // Deletar animal (Admin)
+// router.delete(
+//   "/admin/animais/:id",
+//   autenticarToken,
+//   apenasAdmin,
+//   animalController.deletar
+// );
 
 
 // Buscar animal por ID
-router.get("/animais/:id", animalController.buscarPorId);
+router.get("/:id", animalController.buscarPorId);
 
 // Listar todos os animais (com filtros opcionais)
-router.get("/animais", animalController.listar);
+router.get("/", animalController.listar);
 
 // Cadastrar animal (pode ser admin também, então precisa de proteção)
-router.post("/animais",
+router.post("/",
   //autenticarToken,
   //apenasAdmin,
   validarCamposObrigatorios([
