@@ -36,7 +36,7 @@ router.get("/animais", animalController.listar);
 
 // Cadastrar animal (pode ser admin também, então precisa de proteção)
 router.post("/animais",
-  autenticarToken,
+  //autenticarToken,
   //apenasAdmin,
   validarCamposObrigatorios([
     "nome",

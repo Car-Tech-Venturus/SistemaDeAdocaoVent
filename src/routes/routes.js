@@ -5,7 +5,7 @@ import doacaoRoutes from "./doacaoRoutes.js";
 import loginRoutes from "./loginRoutes.js";
 import pedidoAdocaoRoutes from "./pedidoAdocaoRoutes.js";
 import tutoresRoutes from "./tutoresRoutes.js";
-import adocoesRoutes from "./adocoesRoutes.js";
+//import adocoesRoutes from "./adocoesRoutes.js";
 import questionarioRoutes from "./questionarioRoutes.js"
 
 
@@ -18,7 +18,7 @@ router.use("/doacoes", doacaoRoutes);
 router.use("/login", loginRoutes);
 router.use("/", pedidoAdocaoRoutes);
 router.use("/tutores", tutoresRoutes);
-router.use("/", adocoesRoutes);
+//router.use("/", adocoesRoutes);
 router.use("/questionario", questionarioRoutes);
 
 export default router;
