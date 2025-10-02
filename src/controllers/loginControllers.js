@@ -6,19 +6,12 @@ const SECRET_KEY = process.env.SECRET_KEY; // pesquisei muito pra fazer isso, pr
 
 const loginController = {
     // Já tem esse método no usuarioController, não sei pq precisa ter aqui também, tem que perguntar
-   async cadastrar(req, res) {
-       try {
+   async logar(req, res) {
          const { email, senha } = req.body;
    
          // Validar campos obrigatórios
          if ( !email || !senha) {
            return res.status(400).json({ erro: "Todos os campos obrigatórios devem ser preenchidos corretamente." });
-         }
-   
-         // Verificar se email já existe
-         const emailExistente = await Usuario.findOne({ where: { email } });
-         if (emailExistente) {
-           return res.status(400).json({ erro: "Email preenchido já está sendo utilizado." });
          }
    
          // Criptografar senha
@@ -32,11 +25,8 @@ const loginController = {
          // Retornar sem senha
          const { senha: _, ...usuarioSemSenha } = usuario.toJSON();
          res.status(201).json(usuarioSemSenha);
-       } catch (error) {
-         console.error(error);
-         res.status(500).json({ erro: "Erro interno ao cadastrar o tutor." });
-       }
-    }
-};
+       } 
+    };
+
 
 export default loginController;
