@@ -1,32 +1,38 @@
-import express from "express";
-import {Usuario} from "../../models/Modelos.js";
+// controllers/loginControllers.js
+import { Usuario } from "../../models/Modelos.js";
 import encrypt from "encryptjs";
 
-const SECRET_KEY = process.env.SECRET_KEY; // pesquisei muito pra fazer isso, precisa perguntar pro professores se tá certo, não pode esquecer por nada
-
 const loginController = {
-    // Já tem esse método no usuarioController, não sei pq precisa ter aqui também, tem que perguntar
-   async logar(req, res) {
-         const { email, senha } = req.body;
-   
-         // Validar campos obrigatórios
-         if ( !email || !senha) {
-           return res.status(400).json({ erro: "Todos os campos obrigatórios devem ser preenchidos corretamente." });
-         }
-   
-         // Criptografar senha
-         const senhaCriptografada = encrypt.encrypt(senha, SECRET_KEY, 256);
-   
-         const usuario = await Usuario.create({ 
-           email, 
-           senha: senhaCriptografada 
-         });
-   
-         // Retornar sem senha
-         const { senha: _, ...usuarioSemSenha } = usuario.toJSON();
-         res.status(201).json(usuarioSemSenha);
-       } 
-    };
+  async login(req, res) {
+    try {
+      const { email, senha } = req.body;
 
+      // 1) Buscar usuário
+      const user = await Usuario.findOne({ where: { email } });
+      if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
+
+      // 2) Descriptografar a senha salva no banco
+      const senhaBanco = encrypt.decrypt(user.senha, process.env.SECRET_KEY, 256);
+
+      // 3) Comparar com a senha enviada (pura)
+      if (String(senha).trim() !== String(senhaBanco).trim()) {
+        return res.status(401).json({ message: "Senha inválida" });
+      }
+
+      // 4) OK
+      return res.json({
+        message: "Login realizado com sucesso",
+        user: {
+          id: user.id,
+          nome_completo: user.nome_completo,
+          email: user.email,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Erro no servidor" });
+    }
+  },
+};
 
 export default loginController;

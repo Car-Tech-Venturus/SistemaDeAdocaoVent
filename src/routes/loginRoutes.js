@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/", 
     validarCamposObrigatorios(["email", "senha"]),
-    loginController.logar
-); //não sei se ta certo, mas tem teoria é só isso, pede só o método post
+    loginController.login
+);
 
 export default router;
