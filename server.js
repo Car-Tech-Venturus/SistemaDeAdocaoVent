@@ -1,6 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import routes from "./src/routes/routes.js";
 import { sequelize } from "./models/Modelos.js";
+
+
+const SECRET_KEY = process.env.SECRET_KEY;
+console.log(SECRET_KEY);
 
 const app = express();
 const port = 3000;
