@@ -1,13 +1,13 @@
 import express from "express";
 import questionarioController from "../controllers/questionarioControllers.js";
 import { validarCamposObrigatorios } from "../middlewares/validMiddlewares.js";
-import { apenasAdmin, autenticarToken } from "../middlewares/authMiddlewares.js";
+import { apenasAdmin} from "../middlewares/authMiddlewares.js";
 
 const router = express.Router();
 
 //POST: /questionario
 router.post("/",
-    autenticarToken,
+    //autenticarToken,
     //apenasAdmin,
 validarCamposObrigatorios([
   "tutorId",

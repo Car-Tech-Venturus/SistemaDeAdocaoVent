@@ -1,6 +1,6 @@
 import express from "express";
 import animalController from "../controllers/animalControllers.js";
-import { autenticarToken, apenasAdmin } from "../middlewares/authMiddlewares.js"; 
+import { apenasAdmin } from "../middlewares/authMiddlewares.js"; 
 import { validarCamposObrigatorios } from "../middlewares/validMiddlewares.js"; 
 
 const router = express.Router();

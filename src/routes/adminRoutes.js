@@ -1,5 +1,5 @@
 import express from "express";
-import { autenticarToken, apenasAdmin } from "../middlewares/authMiddlewares.js";
+import {apenasAdmin } from "../middlewares/authMiddlewares.js";
 import AnimalController from "../controllers/animalControllers.js"; 
 
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 // Visualizar todos os animais 
 router.get(
   "/animais",
-  autenticarToken,
+  //autenticarToken,
   apenasAdmin,
   AnimalController.listarAdmin
 );
@@ -17,7 +17,7 @@ router.get(
 // Atualizar animal
 router.patch(
   "/animais/:id",
-  autenticarToken,
+  //autenticarToken,
   apenasAdmin,
   AnimalController.atualizar 
 );
@@ -25,7 +25,7 @@ router.patch(
 // Remover animal da base
 router.delete(
   "/animais/:id",
-  autenticarToken,
+  //autenticarToken,
   apenasAdmin,
   AnimalController.deletar    
 );

@@ -1,5 +1,5 @@
 import express from "express";
-import { apenasAdmin, autenticarToken } from "../middlewares/authMiddlewares.js";
+import { apenasAdmin} from "../middlewares/authMiddlewares.js";
 import { validarCamposObrigatorios } from "../middlewares/validMiddlewares.js";
 import PedidoAdocaoController from "../controllers/pedidoAdocaoControllers.js";
 

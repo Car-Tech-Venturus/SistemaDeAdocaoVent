@@ -1,32 +1,38 @@
-import express from 'express'; //não tenho certeza se precisa, mas achei melhor colocar
-import jwt from 'jsonwebtoken';
+import { Usuario } from "../../models/Modelos.js";
 
-const SECRET_KEY = process.env.SECRET_KEY;
+// Middleware para verificar se o usuário é administrador
 
-//verificar se o token JWT é válido
-export function autenticarToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1]; 
+export async function apenasAdmin(req, res, next) {
+  try {
 
-  if (!token) {
-    return res.status(401).json({ erro: "Token de autenticação não fornecido" });
-  }
+    const email =
+      (req.body && req.body.email) ||
+      (req.query && req.query.email) ||
+      (req.params && req.params.email);
 
-  jwt.verify(token, SECRET_KEY, (err, usuario) => {
-    if (err) {
-      return res.status(403).json({ erro: "Token inválido ou expirado" });
+    if (!email) {
+      return res.status(401).json({ erro: "E-mail do usuário não fornecido" });
     }
 
-    
-    req.usuario = usuario;
-    next();
-  });
-}
+    const usuario = await Usuario.findOne({ where: { email } });
+    if (!usuario) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
 
-//verificar se o usuário é Admin
-export function apenasAdmin(req, res, next) {
-  if (!req.usuario || req.usuario.role !== "admin") {
-    return res.status(403).json({ erro: "Acesso restrito para administradores" });
+    if (!usuario.administrador) {
+      return res.status(403).json({ erro: "Acesso restrito para administradores" });
+    }
+
+    // req.usuario = {
+    //   id: usuario.id,
+    //   email: usuario.email,
+    //   administrador: usuario.administrador,
+    //   nome_completo: usuario.nome_completo,
+    // };
+
+    return next();
+  } catch (err) {
+    console.error("Erro no apenasAdmin:", err);
+    return res.status(500).json({ erro: "Erro interno no servidor" });
   }
-  next();
 }
