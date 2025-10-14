@@ -1,4 +1,3 @@
-// controllers/loginControllers.js
 import { Usuario } from "../../models/Modelos.js";
 import encrypt from "encryptjs";
 
@@ -7,19 +6,20 @@ const loginController = {
     try {
       const { email, senha } = req.body;
 
-      // 1) Buscar usuário
+      //busca o usuário pelo email
+      //pensei em fazer por ID, mas o usuário não sabe
       const user = await Usuario.findOne({ where: { email } });
       if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
 
-      // 2) Descriptografar a senha salva no banco
+      
       const senhaBanco = encrypt.decrypt(user.senha, process.env.SECRET_KEY, 256);
 
-      // 3) Comparar com a senha enviada (pura)
+      //compara as senhas
       if (String(senha).trim() !== String(senhaBanco).trim()) {
         return res.status(401).json({ message: "Senha inválida" });
       }
 
-      // 4) OK
+      //ok
       return res.json({
         message: "Login realizado com sucesso",
         user: {
